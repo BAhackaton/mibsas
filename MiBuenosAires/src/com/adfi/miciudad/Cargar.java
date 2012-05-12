@@ -117,6 +117,8 @@ public class Cargar extends Activity {
 		HttpPost httppost = new HttpPost("http://miciudad.raise.fm/registro.php");
 
 		Spinner categoria=(Spinner) findViewById(R.id.spinner1);
+		
+		
 		EditText descripcion=(EditText) findViewById(R.id.descripcion);
 		EditText direccion=(EditText) findViewById(R.id.direccion);
 		EditText nombre=(EditText) findViewById(R.id.nombre);
@@ -124,7 +126,7 @@ public class Cargar extends Activity {
 		try {
 		    // Add your data
 		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-		    nameValuePairs.add(new BasicNameValuePair("categoria", categoria.toString()));
+		    nameValuePairs.add(new BasicNameValuePair("categoria", String.valueOf(categoria.getSelectedItemPosition()+1)));
 		    nameValuePairs.add(new BasicNameValuePair("descripcion", descripcion.getText().toString()));
 		    nameValuePairs.add(new BasicNameValuePair("direccion", direccion.getText().toString()));
 		    nameValuePairs.add(new BasicNameValuePair("nombre", nombre.getText().toString()));
