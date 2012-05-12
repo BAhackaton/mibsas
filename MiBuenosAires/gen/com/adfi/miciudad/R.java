@@ -49,15 +49,16 @@ public final class R {
         public static final int icono_lista_3=0x7f020016;
         public static final int icono_lista_4=0x7f020017;
         public static final int logosplash=0x7f020018;
-        public static final int tab_focus=0x7f020019;
-        public static final int tab_indicator=0x7f02001a;
-        public static final int tab_press=0x7f02001b;
-        public static final int tab_selected=0x7f02001c;
-        public static final int tab_unselected=0x7f02001d;
-        public static final int tabevolucion=0x7f02001e;
-        public static final int tablista=0x7f02001f;
-        public static final int tabmapa=0x7f020020;
-        public static final int tw=0x7f020021;
+        public static final int stats=0x7f020019;
+        public static final int tab_focus=0x7f02001a;
+        public static final int tab_indicator=0x7f02001b;
+        public static final int tab_press=0x7f02001c;
+        public static final int tab_selected=0x7f02001d;
+        public static final int tab_unselected=0x7f02001e;
+        public static final int tabevolucion=0x7f02001f;
+        public static final int tablista=0x7f020020;
+        public static final int tabmapa=0x7f020021;
+        public static final int tw=0x7f020022;
     }
     public static final class id {
         public static final int TextView01=0x7f08000f;
@@ -68,19 +69,20 @@ public final class R {
         public static final int button1=0x7f08001b;
         public static final int descripcion=0x7f080014;
         public static final int direccion=0x7f080016;
-        public static final int fondo=0x7f08001e;
+        public static final int fondo=0x7f08001f;
         public static final int frameLayout1=0x7f08001a;
-        public static final int icon=0x7f08001c;
+        public static final int icon=0x7f08001d;
         public static final int icono=0x7f08000c;
         public static final int imageButton1=0x7f080009;
         public static final int imageButton2=0x7f08000a;
         public static final int imageView1=0x7f080003;
+        public static final int imageView2=0x7f08001c;
         public static final int linearLayout1=0x7f080000;
         public static final int linearLayout2=0x7f080001;
         public static final int linearLayout3=0x7f080006;
         public static final int linearLayout4=0x7f080004;
         public static final int linearLayout5=0x7f080008;
-        public static final int mapview=0x7f08001f;
+        public static final int mapview=0x7f080020;
         public static final int nombre=0x7f080010;
         public static final int progressBar1=0x7f080019;
         public static final int relativeLayout1=0x7f080002;
@@ -89,7 +91,7 @@ public final class R {
         public static final int textView1=0x7f080011;
         public static final int textdireccion=0x7f08000e;
         public static final int textnombre=0x7f08000d;
-        public static final int title=0x7f08001d;
+        public static final int title=0x7f08001e;
         public static final int webkitWebView1=0x7f08000b;
         public static final int webview=0x7f080007;
     }

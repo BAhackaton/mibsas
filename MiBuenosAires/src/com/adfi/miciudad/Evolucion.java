@@ -10,6 +10,6 @@ public class Evolucion extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// TODO Put your code here
+		setContentView(R.layout.tab_evolucion);
 	}
 }

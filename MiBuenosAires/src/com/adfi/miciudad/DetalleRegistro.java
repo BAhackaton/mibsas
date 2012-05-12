@@ -35,8 +35,9 @@ import android.widget.TextView;
 public class DetalleRegistro extends MapActivity {
 	private static final String IO_BUFFER_SIZE = null;
 
-	private ProgressDialog progDailog;
-
+	
+	ProgressDialog progressDialog;
+	
 	private WebView myWebView;
 	/**
 	 * @see android.app.Activity#onCreate(Bundle)
@@ -46,6 +47,10 @@ public class DetalleRegistro extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.detalleregistro);
 		
+		 progressDialog = new ProgressDialog(DetalleRegistro.this);
+	      progressDialog.setMessage("Leyendo datos ...");
+	      progressDialog.setCancelable(false);
+ 	      progressDialog.show();
 		leerDatos();
 		
 	}
@@ -54,21 +59,29 @@ public class DetalleRegistro extends MapActivity {
 	private void leerDatos(){
 	
 		
-		
-		
 		Registro r=MyProperties.getInstance().registroActual;
-		
-	
- 	    	
- 	    	
+		 	
  	        myWebView = (WebView) findViewById(R.id.webview);
- 	        myWebView.setWebViewClient(new MyWebViewClient());
- 	       
- 	        WebSettings webSettings = myWebView.getSettings();
- 	        webSettings.setJavaScriptEnabled(true);
  	    
- 	        myWebView.loadUrl("http://miciudad.raise.fm/mapa/mapa.php?id="+r.id);
- 	    	//GeoPoint point  = new GeoPoint(la1.intValue(),lo1.intValue());
+ 	       WebSettings webSettings = myWebView.getSettings();
+	        webSettings.setJavaScriptEnabled(true);
+ 	  
+
+ 	       myWebView.setWebViewClient(new WebViewClient() {
+ 	      @Override
+ 	      public void onPageFinished(WebView view, String url) {
+ 	    	  super.onPageFinished(view, url);
+ 	    	  progressDialog.hide();
+ 	      }
+ 	      });
+
+ 	        
+ 	    
+	    
+	        myWebView.loadUrl("http://miciudad.raise.fm/mapa/mapa.php?id="+r.id);
+	    
+	      
+ 	        
  	 			
 	}
 	
