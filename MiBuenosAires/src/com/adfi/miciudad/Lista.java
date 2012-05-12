@@ -78,7 +78,10 @@ public class Lista extends ListActivity {
 	    if(MyProperties.getInstance().vuelveDialogoCarga==true){
 	    	
 	    	// llama a la nueva ventana
-	    	//MyProperties.getInstance().idregistrado
+	    	
+	    	
+	    	Intent intent = new Intent(this.getApplicationContext(), EventoCercano.class);
+	    	startActivity(intent);
 	    }
 	    
 	    

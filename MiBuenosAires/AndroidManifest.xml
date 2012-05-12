@@ -23,6 +23,6 @@
         <activity android:name=".DetalleRegistro" android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".Cargar"
             android:screenOrientation="portrait" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".EventoCercano"/>
+        <activity android:name=".EventoCercano" android:theme="@android:style/Theme.Dialog"/>
     </application>
 </manifest>
