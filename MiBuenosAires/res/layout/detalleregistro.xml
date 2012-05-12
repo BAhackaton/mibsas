@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"  >
+
+    
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+            
+            <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="#FFD800" android:gravity="center_horizontal">
+            
+ <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="19dp"
+                    android:src="@drawable/header" />
+
+            </RelativeLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="1dip"
+            android:background="#FFD800"
+            android:orientation="vertical" >
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                 >
+            
+           
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:orientation="vertical" 
+                    >
+ 
+                     <TextView
+                android:id="@+id/categoria"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Categoria" android:textSize="24sp" android:textColor="#000000"/>
+
+       
+            <ImageView
+                android:id="@+id/foto"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/app_background" />
+
+     
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripcion" android:textColor="#000000" android:textSize="16sp"/>
+
+        <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="100dip"
+                 android:apiKey="05cS10nzyf7UbyXhsBizKmNFpNgY8-3h9E_YTxg"
+                 android:id="@+id/mapview"
+ 				android:clickable="true" />
+
+            <TextView
+                android:id="@+id/direccion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Direccion" android:textColor="#000000" android:textSize="16sp"/>
+
+       
+
+            <TextView
+                android:id="@+id/nombre"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre" android:textColor="#000000" android:textSize="16sp"/>
+
+        
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha" android:textColor="#000000" android:textSize="16sp"/>
+
+     
+
+            <TextView
+                android:id="@+id/estado"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado" android:textColor="#000000" android:textSize="16sp"/>
+
+     
+                </LinearLayout>
+
+
+        
+           
+            
+      
+    </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fb"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dip"
+                    android:background="@drawable/tw" />
+
+            </LinearLayout>
+
+ </LinearLayout>
+    
+
+</LinearLayout>
