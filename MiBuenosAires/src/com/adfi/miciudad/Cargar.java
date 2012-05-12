@@ -20,11 +20,18 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 
+import com.google.android.maps.MyLocationOverlay;
+
+
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -45,10 +52,14 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Cargar extends Activity {
+	private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
+	private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
 	
 	protected static final int CAMERA_PIC_REQUEST = 100;
 	Double latitud,longitud;
 	Bitmap imagenCamara=null;
+	
+	protected LocationManager locationManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,17 @@ public class Cargar extends Activity {
 		// TODO Put your code here
 		 requestWindowFeature(Window.FEATURE_PROGRESS);
 		  
+		 
+		 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	        
+	        locationManager.requestLocationUpdates(
+	        		LocationManager.NETWORK_PROVIDER, 
+	        		MINIMUM_TIME_BETWEEN_UPDATES, 
+	        		MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+	        		new MyLocationListener()
+	        );
+		 
+	       
 		setContentView(R.layout.registro);
 		
 		latitud=0.0;
@@ -202,4 +224,32 @@ public class Cargar extends Activity {
 		}
 		
 	}
+	
+	private class MyLocationListener implements LocationListener {
+
+		public void onLocationChanged(Location location) {
+		
+			Toast.makeText(Cargar.this, "Posicion Encontrada ", Toast.LENGTH_LONG).show();
+			latitud=location.getLatitude();
+			longitud=location.getLongitude();
+		}
+
+		public void onStatusChanged(String s, int i, Bundle b) {
+			
+
+		}
+
+		public void onProviderDisabled(String s) {
+		/*	Toast.makeText(PosicionActivity.this,
+					"Provider disabled by the user. GPS turned off",
+					Toast.LENGTH_LONG).show(); */
+		}
+
+		public void onProviderEnabled(String s) {
+			/* Toast.makeText(PosicionActivity.this,
+					"Provider enabled by the user. GPS turned on",
+					Toast.LENGTH_LONG).show(); */
+		}
+	}
+	
 }
