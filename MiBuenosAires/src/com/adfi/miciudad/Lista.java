@@ -2,11 +2,14 @@ package com.adfi.miciudad;
 
 import java.util.ArrayList;
 
+import com.google.android.maps.MapView;
+
 
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,14 +21,16 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Lista extends ListActivity {
 	
 	 private ArrayList<Registro> m_locals = null;
 	 private IconListViewAdapter m_adapter;
-	    
+
 	/**
 	 * @see android.app.Activity#onCreate(Bundle)
 	 */
@@ -54,7 +59,8 @@ public class Lista extends ListActivity {
 		public void onClick(View arg0) {
 			
 			 Intent intent = new Intent(getApplicationContext(), Cargar.class);
-			 startActivity(intent);
+			
+			 startActivityForResult(intent, 111);
 				
 				
 		}
@@ -63,7 +69,21 @@ public class Lista extends ListActivity {
        
        
    }
-   
+	
+	@Override
+	public void onResume()
+	    {  // After a pause OR at startup
+	    super.onResume();
+	   
+	    if(MyProperties.getInstance().vuelveDialogoCarga==true){
+	    	
+	    	// llama a la nueva ventana
+	    	//MyProperties.getInstance().idregistrado
+	    }
+	    
+	    
+	     }
+	
    @Override
    protected void onListItemClick(ListView l, View v, int position, long id) {
    		Registro local = (Registro) l.getItemAtPosition(position);        

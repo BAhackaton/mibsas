@@ -17,7 +17,8 @@ public class MyProperties {
 
     public String lngIngresada="";
 
-    
+    public boolean vuelveDialogoCarga=false;
+    public int idregistrado=0;
 
     protected MyProperties(){}
 

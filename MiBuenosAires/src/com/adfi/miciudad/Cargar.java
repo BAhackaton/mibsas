@@ -36,6 +36,8 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +56,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Cargar extends Activity {
 	
+	boolean salir=false;
 	
 	private ProgressDialog progDailog;
 	
@@ -73,7 +76,7 @@ public class Cargar extends Activity {
 		// TODO Put your code here
 		 requestWindowFeature(Window.FEATURE_PROGRESS);
 		  
-		 
+		 MyProperties.getInstance().vuelveDialogoCarga=false;
 		 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	        
 	        locationManager.requestLocationUpdates(
@@ -125,7 +128,15 @@ public class Cargar extends Activity {
 		    		public void run() {
 		    			
 		    			String id=postData();
-						postImage(id);		
+						postImage(id);	
+						
+						 while (!salir) {
+						 
+						 
+						 }
+						
+
+						 handler.sendEmptyMessage(0);
 		    		}
 		    		}.start();
 				
@@ -135,7 +146,15 @@ public class Cargar extends Activity {
 		});
 	}
 
-	
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+		
+			
+		}
+
+	};
+
 	
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    	
@@ -244,6 +263,12 @@ public class Cargar extends Activity {
 		
 			
 			progDailog.dismiss();
+			salir=true;
+			
+			MyProperties.getInstance().vuelveDialogoCarga=true;
+			MyProperties.getInstance().idregistrado=Integer.parseInt(nombre_archivo);
+			
+			this.finish();
 	}
 	
 	private class MyLocationListener implements LocationListener {
