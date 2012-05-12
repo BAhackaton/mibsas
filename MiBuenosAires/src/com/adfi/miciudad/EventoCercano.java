@@ -1,6 +1,7 @@
 package com.adfi.miciudad;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -9,14 +10,18 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class EventoCercano extends Activity {
-	/**
-	 * @see android.app.Activity#onCreate(Bundle)
-	 */
+	
+	ProgressDialog progressDialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		 requestWindowFeature(Window.FEATURE_PROGRESS);
 		 
+		 progressDialog = new ProgressDialog(EventoCercano.this);
+	      progressDialog.setMessage("Leyendo datos ...");
+	      progressDialog.setCancelable(false);
+	      progressDialog.show();
 		 
 		MyProperties.getInstance().vuelveDialogoCarga=false;
 		setContentView(R.layout.eventocercano);
@@ -24,7 +29,21 @@ public class EventoCercano extends Activity {
 		  myWebView.setVisibility(View.VISIBLE);
 		  
 		   
-		   myWebView.setWebViewClient(new MyWebViewClient());
+		  myWebView.setWebViewClient(new WebViewClient() {
+			  
+			  @Override
+
+		        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+		        return false;
+
+		        }
+	 	      @Override
+	 	      public void onPageFinished(WebView view, String url) {
+	 	    	  super.onPageFinished(view, url);
+	 	    	  progressDialog.hide();
+	 	      }
+	 	      });
 
 	         
 
@@ -38,16 +57,11 @@ public class EventoCercano extends Activity {
 		   
 	}
 	
+	@Override
+	public void onPause() {
+		super.onPause();
 	
-	private class MyWebViewClient extends WebViewClient {
-
-        @Override
-
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-        return false;
-
-        }
-
-    }
+		progressDialog.dismiss();
+	}
+	
 }

@@ -68,6 +68,11 @@ public class DetalleRegistro extends MapActivity {
  	  
 
  	       myWebView.setWebViewClient(new WebViewClient() {
+ 	    	  @Override
+ 		        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+ 		         return false;
+ 		        }
+ 	    	  
  	      @Override
  	      public void onPageFinished(WebView view, String url) {
  	    	  super.onPageFinished(view, url);
@@ -86,13 +91,13 @@ public class DetalleRegistro extends MapActivity {
 	}
 	
 	
-
-	   private class MyWebViewClient extends WebViewClient {
-	        @Override
-	        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-	         return false;
-	        }
-	    }
+	@Override
+	public void onPause() {
+		super.onPause();
+	
+		progressDialog.dismiss();
+	}
+	
 
 
 	@Override
