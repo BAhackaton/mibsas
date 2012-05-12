@@ -95,7 +95,7 @@ public class Cargar extends Activity {
 		Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 	    ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
 	        android.R.layout.simple_spinner_dropdown_item,
-	            new String[] { "Bache", "Cámaras de seguridad", "Semáforos descompuestos" ,"Poste o árbol caído", "Piquete","Mejora espacio público","Otra propuesta de mejora"});
+	            new String[] { "Bache", "Cámaras de seguridad", "Semáforos descompuestos" ,"Poste o árbol caído"});
 	    
 	   
 	    spinner.setAdapter(spinnerArrayAdapter);
