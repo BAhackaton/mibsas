@@ -25,6 +25,7 @@ import com.google.android.maps.MyLocationOverlay;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -52,6 +53,11 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Cargar extends Activity {
+	
+	
+	private ProgressDialog progDailog;
+	
+	
 	private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
 	private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
 	
@@ -104,13 +110,26 @@ public class Cargar extends Activity {
 		});
 	    
 	    
+	    
 	    Button enviar=(Button)findViewById(R.id.btnenviar);
 	    enviar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				String id=postData();
-				postImage(id);
+				
+				progDailog = ProgressDialog.show(v.getContext(),
+			    		"Subiendo datos", "Por favor espere....",
+			    		true);
+				
+				new Thread() {
+		    		public void run() {
+		    			
+		    			String id=postData();
+						postImage(id);		
+		    		}
+		    		}.start();
+				
+				
 				
 			}
 		});
@@ -168,10 +187,10 @@ public class Cargar extends Activity {
 		    
 		    
 		} catch (ClientProtocolException e) {
-			Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 		    
-			Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 
 		return null;
@@ -212,17 +231,19 @@ public class Cargar extends Activity {
 
         	
     		    
-                Toast.makeText(this, "Registro Subido "+nombre_archivo, Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, "Registro Subido "+nombre_archivo, Toast.LENGTH_LONG).show();
 
         }catch(Exception e){
 
-           Toast.makeText(this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
+          // Toast.makeText(this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
 
           //    System.out.println("Error in http connection "+e.toString());
 	}
 		
 		}
 		
+			
+			progDailog.dismiss();
 	}
 	
 	private class MyLocationListener implements LocationListener {
