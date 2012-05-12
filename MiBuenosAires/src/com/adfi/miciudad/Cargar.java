@@ -75,13 +75,9 @@ public class Cargar extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				String response="<id>1|2|3<>";
-				String []separado=response.split("|");
-		    	
-		    	
-				/*Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-		*/
+		
 			}
 		});
 	    
@@ -132,7 +128,7 @@ public class Cargar extends Activity {
 		    nameValuePairs.add(new BasicNameValuePair("descripcion", descripcion.getText().toString()));
 		    nameValuePairs.add(new BasicNameValuePair("direccion", direccion.getText().toString()));
 		    nameValuePairs.add(new BasicNameValuePair("nombre", nombre.getText().toString()));
-		   nameValuePairs.add(new BasicNameValuePair("lat", latitud.toString()));
+		    nameValuePairs.add(new BasicNameValuePair("lat", latitud.toString()));
 		    nameValuePairs.add(new BasicNameValuePair("lon", longitud.toString()));
 		    httppost.setEntity((HttpEntity) new UrlEncodedFormEntity(nameValuePairs));
 
@@ -141,7 +137,7 @@ public class Cargar extends Activity {
 
 		    Log.v("ciudad",response);
 		    if(response.contains("OK")){
-		    	String []separado=response.split("|");
+		    	String []separado=response.split("#");
 		    	
 		    	return separado[1];
 		   }
@@ -160,45 +156,45 @@ public class Cargar extends Activity {
 	void postImage(String nombre_archivo){
 		
 		
-		if (imagenCamara!=null){
+		
+
+			if (imagenCamara!=null){
+			
+			
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-        imagenCamara.compress(Bitmap.CompressFormat.JPEG, 30, stream); //compress to which format you want.
-
-               
-
+        imagenCamara.compress(Bitmap.CompressFormat.JPEG, 30, stream); //compress to which format you want
+        
         byte [] byte_arr = stream.toByteArray();
 
         String image_str = Base64.encodeBytes(byte_arr);
-
-       
-
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);    
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();    
         nameValuePairs.add(new BasicNameValuePair("image",image_str));
-        nameValuePairs.add(new BasicNameValuePair("image_name",nombre_archivo));
-
-       
+       nameValuePairs.add(new BasicNameValuePair("image_name",nombre_archivo+".jpg"));
+       // nameValuePairs.add(new BasicNameValuePair("image_name","willy.jpg"));
 
         try{
+        		HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://havasmediaargentina.com/miciudad/subirFoto.php");
+        		//HttpPost httppost = new HttpPost("http://4flirt.mobi/android/ws/subirFoto.php");
+        		
+        		
+        		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                
+                //ResponseHandler<String> responseHandler = new BasicResponseHandler();
+    		    //   String response = httpclient.execute(httppost, responseHandler);
+    		    
+    		    HttpResponse response = httpclient.execute(httppost);
+    		    HttpEntity entity = response.getEntity();
 
-                HttpClient httpclient = new DefaultHttpClient();
-
-                HttpPost httppost = new HttpPost("http://miciudad.raise.fm/subirFoto.php");
-
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-
-                ResponseHandler<String> responseHandler = new BasicResponseHandler();
-    		    String response = httpclient.execute(httppost, responseHandler);
-
-              
-                Toast.makeText(this, "Response " + response, Toast.LENGTH_LONG).show();
+        	
+    		    
+                Toast.makeText(this, "Registro Subido "+nombre_archivo, Toast.LENGTH_LONG).show();
 
         }catch(Exception e){
 
-          // Toast.makeText(EdicionActivity.this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
+           Toast.makeText(this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
 
-              System.out.println("Error in http connection "+e.toString());
+          //    System.out.println("Error in http connection "+e.toString());
 	}
 		
 		}

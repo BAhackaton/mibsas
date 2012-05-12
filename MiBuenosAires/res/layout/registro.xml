@@ -114,7 +114,7 @@
                              android:id="@+id/btnfoto"
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
-                             android:background="@drawable/btnfoto"/>
+                             android:background="@drawable/btncamara" android:width="45dip" android:height="45dip"/>
 
                          <Button
                              android:id="@+id/btnenviar"

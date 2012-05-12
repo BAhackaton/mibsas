@@ -81,10 +81,8 @@ public class DetalleRegistro extends MapActivity {
 		}
 		
  	
- 			
-         
- 			downloadFile("http://miciudad.raise.fm/img/"+r.id+".jpg");
-final MapView mapView = (MapView) findViewById(R.id.mapview);
+ 			downloadFile("http://havasmediaargentina.com/miciudad/"+r.id+".jpg");
+ 			final MapView mapView = (MapView) findViewById(R.id.mapview);
  			
  			
  			Double la1 =  r.latitud*1E6;
