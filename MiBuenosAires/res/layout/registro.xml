@@ -103,6 +103,13 @@
                          android:layout_marginRight="10dp"
                          android:inputType="textPostalAddress"/>
 
+                     <TextView
+                         android:id="@+id/coordenadas"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:text="(0,0)" android:textSize="10sp"/>
+
                      <LinearLayout
                          android:id="@+id/linearLayout4"
                          android:layout_width="wrap_content"

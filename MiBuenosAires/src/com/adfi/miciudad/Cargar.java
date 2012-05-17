@@ -25,8 +25,10 @@ import com.google.android.maps.MyLocationOverlay;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -79,12 +81,47 @@ public class Cargar extends Activity {
 		 MyProperties.getInstance().vuelveDialogoCarga=false;
 		 locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	        
-	        locationManager.requestLocationUpdates(
-	        		LocationManager.NETWORK_PROVIDER, 
-	        		MINIMUM_TIME_BETWEEN_UPDATES, 
-	        		MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
-	        		new MyLocationListener()
-	        );
+		 
+		// si no está habilitado el GPS pregunta de habilitarlo
+		 if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+			 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+			 alertDialogBuilder.setMessage("El GPS está deshabilitado. ¿Desea habilitarlo?")
+			 .setCancelable(false)
+			 .setPositiveButton("Habilitar",
+			 new DialogInterface.OnClickListener(){
+			 public void onClick(DialogInterface dialog, int id){
+				 Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+				 startActivity(callGPSSettingIntent);
+			 }
+			 });
+			 alertDialogBuilder.setNegativeButton("Cancelar",
+			 new DialogInterface.OnClickListener(){
+			 public void onClick(DialogInterface dialog, int id){ // si cancela actualiza posicion de la red
+				 dialog.cancel();
+			 
+				
+			 }
+			 });
+			 AlertDialog alert = alertDialogBuilder.create();
+			 alert.show();
+			 }
+
+		 
+		 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+			 locationManager.requestLocationUpdates(
+		        		LocationManager.GPS_PROVIDER,
+		        		MINIMUM_TIME_BETWEEN_UPDATES, 
+		        		MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+		        		new MyLocationListener());
+		 }else{  // si no está habilitado el GPS utiliza la red para tomar la ubicacion
+			 locationManager.requestLocationUpdates(
+			        		LocationManager.NETWORK_PROVIDER,
+			        		MINIMUM_TIME_BETWEEN_UPDATES, 
+			        		MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+			        		new MyLocationListener());
+			 
+		 }
+	        
 		 
 	       
 		setContentView(R.layout.registro);
@@ -95,9 +132,31 @@ public class Cargar extends Activity {
 		Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 	    ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
 	        android.R.layout.simple_spinner_dropdown_item,
-	            new String[] { "Bache", "Cámaras de seguridad", "Semáforos descompuestos" ,"Poste o árbol caído"});
+	            new String[] { "Bache", "Cámaras de seguridad", "Semáforos descompuestos" ,"Poste o árbol caído"," Aceras Rotas",
+	  "Barrido Deficiente",
+	  "Corte de raíces",
+	  "Extracción de árbol",
+	  "Luminarias apagadas",
+	  "Poda de ramas",
+	  "Residuos voluminosos",
+	  "Vehículos abandonados"});
 	    
-	   
+	/*    1 bache
+	    2 camara
+	    3 semaforo
+	    4 poste o arbol
+	    
+	    
+	   5 1 Aceras Rotas
+	  6  1 Barrido Deficiente
+	  7  4 Corte de raíces
+	  8  4 Extracción de árbol
+	  9  3 Luminarias apagadas
+	  10  4 Poda de ramas
+	  11  1 Residuos voluminosos
+	  12  1 Vehículos abandonados */
+	    
+	    
 	    spinner.setAdapter(spinnerArrayAdapter);
 	    
 	    Button foto=(Button)findViewById(R.id.btnfoto);
@@ -224,39 +283,32 @@ public class Cargar extends Activity {
 			
 			
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        imagenCamara.compress(Bitmap.CompressFormat.JPEG, 30, stream); //compress to which format you want
+        imagenCamara.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         
         byte [] byte_arr = stream.toByteArray();
 
         String image_str = Base64.encodeBytes(byte_arr);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();    
         nameValuePairs.add(new BasicNameValuePair("image",image_str));
-       nameValuePairs.add(new BasicNameValuePair("image_name",nombre_archivo+".jpg"));
-       // nameValuePairs.add(new BasicNameValuePair("image_name","willy.jpg"));
-
+        nameValuePairs.add(new BasicNameValuePair("image_name",nombre_archivo+".jpg"));
+    
         try{
         		HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("http://havasmediaargentina.com/miciudad/subirFoto.php");
-        		//HttpPost httppost = new HttpPost("http://4flirt.mobi/android/ws/subirFoto.php");
-        		
+        			
         		
         		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 
-                //ResponseHandler<String> responseHandler = new BasicResponseHandler();
-    		    //   String response = httpclient.execute(httppost, responseHandler);
-    		    
+                
     		    HttpResponse response = httpclient.execute(httppost);
     		    HttpEntity entity = response.getEntity();
 
-        	
-    		    
-               // Toast.makeText(this, "Registro Subido "+nombre_archivo, Toast.LENGTH_LONG).show();
 
         }catch(Exception e){
 
-          // Toast.makeText(this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
+           Toast.makeText(this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
 
-          //    System.out.println("Error in http connection "+e.toString());
+         
 	}
 		
 		}
@@ -271,13 +323,22 @@ public class Cargar extends Activity {
 			this.finish();
 	}
 	
+	
+	
+	
 	private class MyLocationListener implements LocationListener {
 
 		public void onLocationChanged(Location location) {
 		
-			Toast.makeText(Cargar.this, "Posicion Encontrada ", Toast.LENGTH_LONG).show();
+			//Toast.makeText(Cargar.this, "Posicion Encontrada ", Toast.LENGTH_LONG).show();
 			latitud=location.getLatitude();
 			longitud=location.getLongitude();
+			
+			TextView coordenadas=(TextView) findViewById(R.id.coordenadas);
+			coordenadas.setText("("+String.valueOf(latitud)+","+String.valueOf(longitud)+")");
+			
+			
+			
 		}
 
 		public void onStatusChanged(String s, int i, Bundle b) {
