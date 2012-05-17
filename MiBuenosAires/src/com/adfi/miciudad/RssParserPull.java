@@ -81,7 +81,9 @@ import android.util.Xml;
 	                        		registroActual.id =Long.parseLong(parser.nextText());
 	                            }else if (etiqueta.equals("cat"))
 	                            {
+	                            	
 	                            	registroActual.categoria=Integer.parseInt(parser.nextText());
+	                            	Log.v("xml",String.valueOf(registroActual.categoria));
 	                            }
 	                            else if (etiqueta.equals("des"))
 	                            {

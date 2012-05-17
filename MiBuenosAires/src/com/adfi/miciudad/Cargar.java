@@ -256,9 +256,29 @@ public class Cargar extends Activity {
 		    ResponseHandler<String> responseHandler = new BasicResponseHandler();
 		    String response = httpclient.execute(httppost, responseHandler);
 
+		    
+		 
+		 			
+		    
+		    MyProperties.getInstance().registroNuevo=null;
+		    
 		    Log.v("ciudad",response);
 		    if(response.contains("OK")){
 		    	String []separado=response.split("#");
+		    	
+		    	// agrego el registro que cargue a la lista para que ya esté cargado cuando se refresca
+			    Registro r=new Registro();
+			    r.id=Long.parseLong(separado[1]);
+			    r.categoria=Integer.parseInt(String.valueOf(categoria.getSelectedItemPosition()+1));
+			    r.descripcion=descripcion.getText().toString();
+			    r.direccion=direccion.getText().toString();
+			    r.nombre=nombre.getText().toString();
+			    r.latitud=latitud;
+			    r.longitud=longitud;
+			    r.solved=false;
+			    MyProperties.getInstance().registroNuevo=r;
+			 	MyProperties.getInstance().listaRegistros.add(r);
+		    	
 		    	
 		    	return separado[1];
 		   }
@@ -319,6 +339,9 @@ public class Cargar extends Activity {
 			
 			MyProperties.getInstance().vuelveDialogoCarga=true;
 			MyProperties.getInstance().idregistrado=Integer.parseInt(nombre_archivo);
+			
+			
+			
 			
 			this.finish();
 	}

@@ -94,14 +94,14 @@ public class Mapa extends MapActivity {
 	  agregarOverlayPersonalizado(2,new OverlayPersonalizado(icono2r,this),mapOverlays,true);
      agregarOverlayPersonalizado(3,new OverlayPersonalizado(icono3r,this),mapOverlays,true);
     agregarOverlayPersonalizado(4,new OverlayPersonalizado(icono4r,this),mapOverlays,true);
-    agregarOverlayPersonalizado(5,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(6,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(7,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(8,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(9,new OverlayPersonalizado(icono3r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(10,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(11,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
-    agregarOverlayPersonalizado(12,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(5,new OverlayPersonalizado(icono1r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(6,new OverlayPersonalizado(icono1r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(7,new OverlayPersonalizado(icono4r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(8,new OverlayPersonalizado(icono4r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(9,new OverlayPersonalizado(icono3r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(10,new OverlayPersonalizado(icono4r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(11,new OverlayPersonalizado(icono1r,this),mapOverlays,true);
+    agregarOverlayPersonalizado(12,new OverlayPersonalizado(icono1r,this),mapOverlays,true);
  
           
   

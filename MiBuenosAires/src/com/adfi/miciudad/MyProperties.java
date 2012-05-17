@@ -8,6 +8,7 @@ public class MyProperties {
 
 
     public Registro registroActual;
+    public Registro registroNuevo;
     
     public int idtipo;
 

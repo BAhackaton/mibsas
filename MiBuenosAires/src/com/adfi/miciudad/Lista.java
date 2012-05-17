@@ -76,10 +76,14 @@ public class Lista extends ListActivity {
 	    super.onResume();
 	   
 	    if(MyProperties.getInstance().vuelveDialogoCarga==true){
-	    	
+	    
+	    	// vuelve a leer por si se agregaron datos
+	    	if(MyProperties.getInstance().registroNuevo!=null){
+	    		m_adapter.add(MyProperties.getInstance().registroNuevo);
+	    		m_adapter.notifyDataSetChanged();
+	    		MyProperties.getInstance().registroNuevo=null; // lo vuelvo a poner en null
+	    	}
 	    	// llama a la nueva ventana
-	    	
-	    	
 	    	Intent intent = new Intent(this.getApplicationContext(), EventoCercano.class);
 	    	startActivity(intent);
 	    }
@@ -162,7 +166,7 @@ public class IconListViewAdapter extends ArrayAdapter<Registro> {
 	                        ImageView im = (ImageView) v.findViewById(R.id.icono);
 	                        
 	                        textdireccion.setText(o.descripcion);
-	                        
+	                        Log.v("cat",String.valueOf(o.categoria));
 	                        switch(o.categoria) {
 		                        case 1:
 		                        	 textnombre.setText("Bache");
@@ -179,27 +183,35 @@ public class IconListViewAdapter extends ArrayAdapter<Registro> {
 		                        case 4:
 		                        	 textnombre.setText("Poste o árbol caído");
 		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        	 break;
 		                        case 5:
 		                        	 textnombre.setText("Aceras Rotas");
 		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        	 break;
 		                        case 6:
 		                        	 textnombre.setText("Barrido Deficiente");
 		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        	 break;
 		                        case 7:
 		                        	 textnombre.setText("Corte de raíces");
 		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        	 break;
 		                        case 8:
 		                        	 textnombre.setText("Extracción de árbol");
 		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        	 break;
 		                        case 9:
 		                        	 textnombre.setText("Luminarias apagadas");
 		                        	 im.setImageResource(R.drawable.icono_lista_3);
+		                        	 break;
 		                        case 10:
 		                        	 textnombre.setText("Poda de ramas");
 		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        	 break;
 		                        case 11:
 		                        	 textnombre.setText("Residuos voluminosos");
 		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        	 break;
 		                        case 12:
 		                        	 textnombre.setText("Vehículos abandonados");
 		                        	 im.setImageResource(R.drawable.icono_lista_1);
