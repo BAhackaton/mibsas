@@ -179,7 +179,32 @@ public class IconListViewAdapter extends ArrayAdapter<Registro> {
 		                        case 4:
 		                        	 textnombre.setText("Poste o árbol caído");
 		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        case 5:
+		                        	 textnombre.setText("Aceras Rotas");
+		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        case 6:
+		                        	 textnombre.setText("Barrido Deficiente");
+		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        case 7:
+		                        	 textnombre.setText("Corte de raíces");
+		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        case 8:
+		                        	 textnombre.setText("Extracción de árbol");
+		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        case 9:
+		                        	 textnombre.setText("Luminarias apagadas");
+		                        	 im.setImageResource(R.drawable.icono_lista_3);
+		                        case 10:
+		                        	 textnombre.setText("Poda de ramas");
+		                        	 im.setImageResource(R.drawable.icono_lista_4);
+		                        case 11:
+		                        	 textnombre.setText("Residuos voluminosos");
+		                        	 im.setImageResource(R.drawable.icono_lista_1);
+		                        case 12:
+		                        	 textnombre.setText("Vehículos abandonados");
+		                        	 im.setImageResource(R.drawable.icono_lista_1);
 		                        	break;
+		                        	
 	                        }
 	      	                                                      
 	                          	                    	                        

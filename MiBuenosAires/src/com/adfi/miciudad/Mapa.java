@@ -76,7 +76,15 @@ public class Mapa extends MapActivity {
     	  agregarOverlayPersonalizado(2,new OverlayPersonalizado(icono2,this),mapOverlays,false);
           agregarOverlayPersonalizado(3,new OverlayPersonalizado(icono3,this),mapOverlays,false);
          agregarOverlayPersonalizado(4,new OverlayPersonalizado(icono4,this),mapOverlays,false);
-         
+         agregarOverlayPersonalizado(5,new OverlayPersonalizado(icono1,this),mapOverlays,false);
+         agregarOverlayPersonalizado(6,new OverlayPersonalizado(icono1,this),mapOverlays,false);
+         agregarOverlayPersonalizado(7,new OverlayPersonalizado(icono4,this),mapOverlays,false);
+         agregarOverlayPersonalizado(8,new OverlayPersonalizado(icono4,this),mapOverlays,false);
+         agregarOverlayPersonalizado(9,new OverlayPersonalizado(icono3,this),mapOverlays,false);
+         agregarOverlayPersonalizado(10,new OverlayPersonalizado(icono4,this),mapOverlays,false);
+         agregarOverlayPersonalizado(11,new OverlayPersonalizado(icono1,this),mapOverlays,false);
+         agregarOverlayPersonalizado(12,new OverlayPersonalizado(icono1,this),mapOverlays,false);
+      
          
          Drawable icono1r= this.getResources().getDrawable(R.drawable.icono1solved);
    	  Drawable icono2r= this.getResources().getDrawable(R.drawable.icono2solved);
@@ -86,8 +94,18 @@ public class Mapa extends MapActivity {
 	  agregarOverlayPersonalizado(2,new OverlayPersonalizado(icono2r,this),mapOverlays,true);
      agregarOverlayPersonalizado(3,new OverlayPersonalizado(icono3r,this),mapOverlays,true);
     agregarOverlayPersonalizado(4,new OverlayPersonalizado(icono4r,this),mapOverlays,true);
-   
+    agregarOverlayPersonalizado(5,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(6,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(7,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(8,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(9,new OverlayPersonalizado(icono3r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(10,new OverlayPersonalizado(icono4r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(11,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
+    agregarOverlayPersonalizado(12,new OverlayPersonalizado(icono1r,this),mapOverlays,false);
+ 
           
+  
+    
 		}
 
 	
@@ -137,12 +155,12 @@ public class Mapa extends MapActivity {
 
 		public void onLocationChanged(Location location) {
 		
-			Toast.makeText(Mapa.this, "Posición encontrada", Toast.LENGTH_LONG).show();
+		//	Toast.makeText(Mapa.this, "Posición encontrada", Toast.LENGTH_LONG).show();
 		}
 
 		public void onStatusChanged(String s, int i, Bundle b) {
-			Toast.makeText(Mapa.this, "Provider status changed",
-					Toast.LENGTH_LONG).show();
+		//	Toast.makeText(Mapa.this, "Provider status changed",
+			//		Toast.LENGTH_LONG).show();
 		}
 
 		public void onProviderDisabled(String s) {
