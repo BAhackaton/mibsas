@@ -45,7 +45,6 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-  // lgo
         setContentView(R.layout.splash);
         
         
@@ -64,18 +63,7 @@ public class MainActivity extends Activity{
         
         
         inicializar();
-        // para simular un delay antes de ingresar como si leyera del servicio
         
-   /*     final Handler handler = new Handler();
-   	 handler.postDelayed(new Runnable() {
-   	   @Override
-   	   public void run() {
-   		//   FrameLayout loading=(FrameLayout) findViewById(R.id.frameLayout2);
-   		  // loading.setVisibility(View.INVISIBLE);
-   		   
-   		
-   	   }
-   	 }, 2000);*/
     }
 
 
@@ -100,9 +88,7 @@ public boolean isNetworkReachable() {
 	return (current.getState() == NetworkInfo.State.CONNECTED); 
 }
 private void leerServicio(){
-	/*progDailog = ProgressDialog.show(this,
-    		"Leyendo servicios ", "Por favor espere....",
-    		true);*/
+	
 	 progress.setVisibility(View.VISIBLE);
     		new Thread() {
     		public void run() {
@@ -110,12 +96,12 @@ private void leerServicio(){
     		try{
     		
     			RssParserPull saxparser = new RssParserPull("http://miciudad.raise.fm/get.php");
-    			//progDailog.show();
+    			
              while (!salir) {
             	  listaRegistros = saxparser.parse();
             	  if (saxparser.isReady()) {
                 	 salir=true;
-                	// progDailog.dismiss();
+    
                 	 progress.setVisibility(View.INVISIBLE);
                  }
              }
@@ -124,7 +110,6 @@ private void leerServicio(){
     			
     		} catch (Exception e) { }
     		handler.sendEmptyMessage(0);
-    	//	progDailog.dismiss();
     		 progress.setVisibility(View.INVISIBLE);
     		}
     		}.start();
