@@ -179,6 +179,14 @@ public class Cargar extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				
+				
+				TextView direccion=(TextView) findViewById(R.id.direccion);
+				if(direccion.getText().toString().equalsIgnoreCase("")){
+					
+					Toast.makeText(getApplicationContext(), "Por favor ingrese la dirección", Toast.LENGTH_SHORT).show();
+					
+				}else{
 				progDailog = ProgressDialog.show(v.getContext(),
 			    		"Subiendo datos", "Por favor espere....",
 			    		true);
@@ -198,7 +206,7 @@ public class Cargar extends Activity {
 						 handler.sendEmptyMessage(0);
 		    		}
 		    		}.start();
-				
+				}
 				
 				
 			}
